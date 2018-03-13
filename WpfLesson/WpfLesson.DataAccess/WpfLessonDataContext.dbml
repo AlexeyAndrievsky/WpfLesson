@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="WpfLwssonData" Class="WpfLessonDataContextDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\data\WpfLwssonData.mdf;Integrated Security=True" SettingsObjectName="WpfLesson.DataAccess.Properties.Settings" SettingsPropertyName="WpfLwssonDataConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Departments" Member="DbDepartments">
+    <Type Name="DbDepartment">
+      <Column Name="Id_Department" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DeptName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="DeptInfo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="DbDepartment_DbEmployer" Member="DbEmployers" Storage="_Employers" ThisKey="Id_Department" OtherKey="Id_Department" Type="DbEmployer" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Employers" Member="DbEmployers">
+    <Type Name="DbEmployer">
+      <Column Name="Id_Employee" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EmpSurname" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[EmpName ]" Member="EmpName" Storage="_EmpName_" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="EmpSecondName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Birthday" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Id_Department" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Salary" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Association Name="DbDepartment_DbEmployer" Member="DbDepartment" Storage="_Department" ThisKey="Id_Department" OtherKey="Id_Department" Type="DbDepartment" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
