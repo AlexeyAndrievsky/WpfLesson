@@ -1,11 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace WpfLesson.DataAccess
 {
+    /// <summary>
+    /// Класс, осуществляющий обмен данными с базой данных.
+    /// Наследник интерфейса <see cref="IDataService"/>
+    /// </summary>
     public class DataServiceStub : IDataService
     {
+        #region Public methods
+        /// <summary>
+        /// Получение списка сотрудников.
+        /// </summary>
+        /// <returns>Список сотрудников.</returns>
         public IList<Employee> GetEmployers()
         {
             WpfLessonDBClassesDataContext db = new WpfLessonDBClassesDataContext();
@@ -13,6 +21,10 @@ namespace WpfLesson.DataAccess
             return employers;
         }
 
+        /// <summary>
+        /// Получение списка отделений.
+        /// </summary>
+        /// <returns>Список отделений.</returns>
         public IList<Department> GetDepartments()
         {
             WpfLessonDBClassesDataContext db = new WpfLessonDBClassesDataContext();
@@ -20,6 +32,10 @@ namespace WpfLesson.DataAccess
             return department;
         }
 
+        /// <summary>
+        /// Обновление данных сотрудника.
+        /// </summary>
+        /// <param name="employee">Сотрудник, данные которого требуется обновить.</param>
         public void UpdateEmployee(Employee employee)
         {
             WpfLessonDBClassesDataContext db = new WpfLessonDBClassesDataContext();
@@ -35,6 +51,10 @@ namespace WpfLesson.DataAccess
             db.SubmitChanges();
         }
 
+        /// <summary>
+        /// Добавление нового сотрудника в БД.
+        /// </summary>
+        /// <param name="employee">Сотрудник, которого следует добавить.</param>
         public void InsertEmployee(Employee employee)
         {
             WpfLessonDBClassesDataContext db = new WpfLessonDBClassesDataContext();
@@ -51,6 +71,10 @@ namespace WpfLesson.DataAccess
             db.SubmitChanges();
         }
 
+        /// <summary>
+        /// Удаление сотрудника из БД.
+        /// </summary>
+        /// <param name="employee">Сотрудник, которого требуется удалить.</param>
         public void DeleteEmployee(Employee employee)
         {
             WpfLessonDBClassesDataContext db = new WpfLessonDBClassesDataContext();
@@ -59,6 +83,10 @@ namespace WpfLesson.DataAccess
             db.SubmitChanges();
         }
 
+        /// <summary>
+        /// Обновление данных отделения.
+        /// </summary>
+        /// <param name="department">отделение, данные которого требуется обновить.</param>
         public void UpdateDepartment(Department department)
         {
             WpfLessonDBClassesDataContext db = new WpfLessonDBClassesDataContext();
@@ -68,6 +96,10 @@ namespace WpfLesson.DataAccess
             db.SubmitChanges();
         }
 
+        /// <summary>
+        /// Добавление нового отделения в БД.
+        /// </summary>
+        /// <param name="department">Отделение, которое следует добавить в БД.</param>
         public void InsertDepartment(Department department)
         {
             WpfLessonDBClassesDataContext db = new WpfLessonDBClassesDataContext();
@@ -78,6 +110,10 @@ namespace WpfLesson.DataAccess
             db.SubmitChanges();
         }
 
+        /// <summary>
+        /// Удаление отделения из БД.
+        /// </summary>
+        /// <param name="department">Отделение, которое следует удалить из БД.</param>
         public void DeleteDepartment(Department department)
         {
             WpfLessonDBClassesDataContext db = new WpfLessonDBClassesDataContext();
@@ -85,5 +121,6 @@ namespace WpfLesson.DataAccess
             db.DbDepartments.DeleteOnSubmit(dpt);
             db.SubmitChanges();
         }
+        #endregion
     }
 }
