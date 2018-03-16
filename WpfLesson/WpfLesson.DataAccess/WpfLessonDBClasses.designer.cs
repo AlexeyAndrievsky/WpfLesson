@@ -22,8 +22,8 @@ namespace WpfLesson.DataAccess
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="WpfLwssonData")]
-	public partial class WpfLessonDataContextDataContext : System.Data.Linq.DataContext
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="WpfLessonData")]
+	public partial class WpfLessonDBClassesDataContext : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -38,31 +38,31 @@ namespace WpfLesson.DataAccess
     partial void DeleteDbEmployer(DbEmployer instance);
     #endregion
 		
-		public WpfLessonDataContextDataContext() : 
-				base(global::WpfLesson.DataAccess.Properties.Settings.Default.WpfLwssonDataConnectionString, mappingSource)
+		public WpfLessonDBClassesDataContext() : 
+				base(global::WpfLesson.DataAccess.Properties.Settings.Default.WpfLessonDataConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public WpfLessonDataContextDataContext(string connection) : 
+		public WpfLessonDBClassesDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public WpfLessonDataContextDataContext(System.Data.IDbConnection connection) : 
+		public WpfLessonDBClassesDataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public WpfLessonDataContextDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public WpfLessonDBClassesDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public WpfLessonDataContextDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public WpfLessonDBClassesDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -97,7 +97,7 @@ namespace WpfLesson.DataAccess
 		
 		private string _DeptInfo;
 		
-		private EntitySet<DbEmployer> _Employers;
+		private EntitySet<DbEmployer> _DbEmployers;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -113,7 +113,7 @@ namespace WpfLesson.DataAccess
 		
 		public DbDepartment()
 		{
-			this._Employers = new EntitySet<DbEmployer>(new Action<DbEmployer>(this.attach_Employers), new Action<DbEmployer>(this.detach_Employers));
+			this._DbEmployers = new EntitySet<DbEmployer>(new Action<DbEmployer>(this.attach_DbEmployers), new Action<DbEmployer>(this.detach_DbEmployers));
 			OnCreated();
 		}
 		
@@ -177,16 +177,16 @@ namespace WpfLesson.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DbDepartment_DbEmployer", Storage="_Employers", ThisKey="Id_Department", OtherKey="Id_Department")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DbDepartment_Employer", Storage="_DbEmployers", ThisKey="Id_Department", OtherKey="Id_Department")]
 		public EntitySet<DbEmployer> DbEmployers
 		{
 			get
 			{
-				return this._Employers;
+				return this._DbEmployers;
 			}
 			set
 			{
-				this._Employers.Assign(value);
+				this._DbEmployers.Assign(value);
 			}
 		}
 		
@@ -210,13 +210,13 @@ namespace WpfLesson.DataAccess
 			}
 		}
 		
-		private void attach_Employers(DbEmployer entity)
+		private void attach_DbEmployers(DbEmployer entity)
 		{
 			this.SendPropertyChanging();
 			entity.DbDepartment = this;
 		}
 		
-		private void detach_Employers(DbEmployer entity)
+		private void detach_DbEmployers(DbEmployer entity)
 		{
 			this.SendPropertyChanging();
 			entity.DbDepartment = null;
@@ -233,7 +233,7 @@ namespace WpfLesson.DataAccess
 		
 		private string _EmpSurname;
 		
-		private string _EmpName_;
+		private string _EmpName;
 		
 		private string _EmpSecondName;
 		
@@ -243,7 +243,7 @@ namespace WpfLesson.DataAccess
 		
 		private System.Nullable<decimal> _Salary;
 		
-		private EntityRef<DbDepartment> _Department;
+		private EntityRef<DbDepartment> _DbDepartment;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -267,7 +267,7 @@ namespace WpfLesson.DataAccess
 		
 		public DbEmployer()
 		{
-			this._Department = default(EntityRef<DbDepartment>);
+			this._DbDepartment = default(EntityRef<DbDepartment>);
 			OnCreated();
 		}
 		
@@ -311,20 +311,20 @@ namespace WpfLesson.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[EmpName ]", Storage="_EmpName_", DbType="NVarChar(255)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmpName", DbType="NVarChar(255)")]
 		public string EmpName
 		{
 			get
 			{
-				return this._EmpName_;
+				return this._EmpName;
 			}
 			set
 			{
-				if ((this._EmpName_ != value))
+				if ((this._EmpName != value))
 				{
 					this.OnEmpNameChanging(value);
 					this.SendPropertyChanging();
-					this._EmpName_ = value;
+					this._EmpName = value;
 					this.SendPropertyChanged("EmpName");
 					this.OnEmpNameChanged();
 				}
@@ -382,7 +382,7 @@ namespace WpfLesson.DataAccess
 			{
 				if ((this._Id_Department != value))
 				{
-					if (this._Department.HasLoadedOrAssignedValue)
+					if (this._DbDepartment.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -415,26 +415,26 @@ namespace WpfLesson.DataAccess
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DbDepartment_DbEmployer", Storage="_Department", ThisKey="Id_Department", OtherKey="Id_Department", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DbDepartment_Employer", Storage="_DbDepartment", ThisKey="Id_Department", OtherKey="Id_Department", IsForeignKey=true)]
 		public DbDepartment DbDepartment
 		{
 			get
 			{
-				return this._Department.Entity;
+				return this._DbDepartment.Entity;
 			}
 			set
 			{
-				DbDepartment previousValue = this._Department.Entity;
+				DbDepartment previousValue = this._DbDepartment.Entity;
 				if (((previousValue != value) 
-							|| (this._Department.HasLoadedOrAssignedValue == false)))
+							|| (this._DbDepartment.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Department.Entity = null;
+						this._DbDepartment.Entity = null;
 						previousValue.DbEmployers.Remove(this);
 					}
-					this._Department.Entity = value;
+					this._DbDepartment.Entity = value;
 					if ((value != null))
 					{
 						value.DbEmployers.Add(this);

@@ -18,8 +18,7 @@
         </Grid.ColumnDefinitions>
 
         <Label Content="Сотрудники:" />
-        <ComboBox Name="EmployersComboBox" Margin="5" Grid.Column="1" SelectedValue="{Binding Path=SelectedValue, Mode=OneWayToSource}"
-                  ItemsSource="{Binding Path=Employers}" DisplayMemberPath="Surname" SelectedValuePath="ID" />
+        <ComboBox Name="EmployersComboBox" Margin="5" Grid.Column="1" SelectedValue="{Binding Path=SelectedValue, Mode=OneWayToSource}" ItemsSource="{Binding Path=Employers}" DisplayMemberPath="Surname" SelectedValuePath="ID" />
         <GroupBox Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="3" Header="Данные сотрудника:">
             <Grid>
                 <Grid.RowDefinitions>
@@ -37,19 +36,18 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Row="0" Grid.Column="0" Content="Фамилия:" />
-                <TextBox Grid.Row="0" Grid.Column="1" Margin="5"  IsEnabled="{Binding Path=DetailsEnabled}" Text="{Binding Path=SelectedEmployee.Surname}"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Margin="5"  IsEnabled="{Binding Path=DetailsEnabled}" Text="{Binding Path=SelectedEntity.Surname}"/>
                 <Label Grid.Row="1" Grid.Column="0" Content="Имя:" />
-                <TextBox Grid.Row="1" Grid.Column="1" Margin="5"  IsEnabled="{Binding Path=DetailsEnabled}" Text="{Binding Path=SelectedEmployee.Name}"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="5"  IsEnabled="{Binding Path=DetailsEnabled}" Text="{Binding Path=SelectedEntity.Name}"/>
                 <Label Grid.Row="2" Grid.Column="0" Content="Отчество:" />
-                <TextBox Grid.Row="2" Grid.Column="1" Margin="5"  IsEnabled="{Binding Path=DetailsEnabled}" Text="{Binding Path=SelectedEmployee.SecondName}"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Margin="5"  IsEnabled="{Binding Path=DetailsEnabled}" Text="{Binding Path=SelectedEntity.SecondName}"/>
                 <Label Grid.Row="3" Grid.Column="0" Content="Дата рождения:" />
-                <DatePicker Grid.Row="3" Grid.Column="1" Margin="5"  IsEnabled="{Binding Path=DetailsEnabled}" SelectedDate="{Binding Path=SelectedEmployee.Birthday}" FirstDayOfWeek="Monday"/>
+                <DatePicker Grid.Row="3" Grid.Column="1" Margin="5"  IsEnabled="{Binding Path=DetailsEnabled}" SelectedDate="{Binding Path=SelectedEntity.Birthday}" FirstDayOfWeek="Monday"/>
                 <Label Grid.Row="4" Grid.Column="0" Content="Отдел:" />
-                <TextBox Grid.Row="4" Grid.Column="1" Margin="5"  IsEnabled="{Binding Path=DetailsEnabled}" Text="{Binding Path=SelectedEmployee.Id_Department}"/>
+                <ComboBox Grid.Row="4" Grid.Column="1" Margin="5" SelectedValue="{Binding Path=SelectedEntity.Id_Department, Mode=TwoWay}" ItemsSource="{Binding Path=Departments}" DisplayMemberPath="DeptName" SelectedValuePath="ID" />
                 <Label Grid.Row="5" Grid.Column="0" Content="Зарплата:" />
-                <TextBox Grid.Row="5" Grid.Column="1" Margin="5"  IsEnabled="{Binding Path=DetailsEnabled}" Text="{Binding Path=SelectedEmployee.Salary}"/>
-                <Button Grid.Row="6" Grid.ColumnSpan="2" Content="Обновить" Margin="5" 
-                        Command="{Binding Path=UpdateCommand}" />
+                <TextBox Grid.Row="5" Grid.Column="1" Margin="5"  IsEnabled="{Binding Path=DetailsEnabled}" Text="{Binding Path=SelectedEntity.Salary}"/>
+                <Button Grid.Row="6" Grid.ColumnSpan="2" Content="Обновить" Margin="5" Command="{Binding Path=UpdateCommand}" />
             </Grid>
         </GroupBox>
 

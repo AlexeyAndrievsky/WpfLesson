@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("WpfLesson.DataAccess")]
+[assembly: AssemblyTitle("WpfLesson.Model")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("WpfLesson.DataAccess")]
+[assembly: AssemblyProduct("WpfLesson.Model")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("8a130b41-ece2-4e80-9f5d-d49ef7753c88")]
+[assembly: Guid("e76f925f-b7d9-4f36-8c7b-f9cb2c36a332")]
 
 // Version information for an assembly consists of the following four values:
 //

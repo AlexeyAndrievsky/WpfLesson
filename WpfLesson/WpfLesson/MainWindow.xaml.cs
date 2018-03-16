@@ -1,43 +1,64 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WpfLesson.DataAccess;
+using WpfLesson.Model;
+using WpfLesson.ViewModel;
 
 namespace WpfLesson
 {
     public partial class MainWindow : Window
     {
-        private IEmployersModel EmployersModel;
+        private EmployersModel EmployersModel;
+        private EmployeeModel EmployeeModel;
+        private DepartmentsModel DepartmentsModel;
+        private DepartmentModel DepartmentModel;
 
         public MainWindow()
         {
             InitializeComponent();
-            EmployersModel = new EmployersModel(new DataServiceStub());
         }
 
         private void ShowEmployersButton_Click(object sender, RoutedEventArgs e)
         {
             EmployersView view = new EmployersView();
-            view.DataContext
-                = new EmployersViewModel(EmployersModel);
+            EmployersModel = new EmployersModel(new DataServiceStub());
+            DepartmentsModel = new DepartmentsModel(new DataServiceStub());
+            view.DataContext = new EmployersViewModel(EmployersModel, DepartmentsModel);
             view.Owner = this;
             view.Show();
         }
 
         private void ShowDepartmentsButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            DepartmentsView view = new DepartmentsView();
+            EmployersModel = new EmployersModel(new DataServiceStub());
+            DepartmentsModel = new DepartmentsModel(new DataServiceStub());
+            view.DataContext = new DepartmentsViewModel(EmployersModel, DepartmentsModel);
+            view.Owner = this;
+            view.Show();
+        }
+
+        private void AddDepartmentButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddDepartmentView view = new AddDepartmentView();
+            DepartmentModel = new DepartmentModel(new DataServiceStub());
+            AddDepartmentViewModel vm = new AddDepartmentViewModel(DepartmentModel);
+            view.DataContext = vm;
+            vm.CloseAction = new Action(view.Close);
+            view.Owner = this;
+            view.Show();
+        }
+
+        private void AddEmployeeButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddEmployeeView view = new AddEmployeeView();
+            EmployeeModel = new EmployeeModel(new DataServiceStub());
+            DepartmentsModel = new DepartmentsModel(new DataServiceStub());
+            AddEmployeeViewModel vm = new AddEmployeeViewModel(EmployeeModel, DepartmentsModel);
+            view.DataContext = vm;
+            vm.CloseAction = new Action(view.Close);
+            view.Owner = this;
+            view.Show();
         }
     }
 }

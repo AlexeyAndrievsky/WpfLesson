@@ -26,11 +26,11 @@ namespace WpfLesson.DataAccess.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\data\\WpfLwsso" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\data\\WpfLesso" +
             "nData.mdf;Integrated Security=True")]
-        public string WpfLwssonDataConnectionString {
+        public string WpfLessonDataConnectionString {
             get {
-                return ((string)(this["WpfLwssonDataConnectionString"]));
+                return ((string)(this["WpfLessonDataConnectionString"]));
             }
         }
     }

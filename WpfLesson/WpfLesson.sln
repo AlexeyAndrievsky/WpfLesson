@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfLesson", "WpfLesson\WpfLesson.csproj", "{E85AD52D-A0C0-4A76-AF80-F89CF04F26F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfLesson", "WpfLesson\WpfLesson.csproj", "{0EC5DCB6-2BA4-4ED5-94C1-8B9A08386BB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfLesson.DataAccess", "WpfLesson.DataAccess\WpfLesson.DataAccess.csproj", "{FFB12EAC-4182-4258-83D7-B07BBAE0EF18}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfLesson.DataAccess", "WpfLesson.DataAccess\WpfLesson.DataAccess.csproj", "{8A130B41-ECE2-4E80-9F5D-D49EF7753C88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfLesson.Model", "WpfLesson.Model\WpfLesson.Model.csproj", "{E76F925F-B7D9-4F36-8C7B-F9CB2C36A332}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfLesson.ViewModel", "WpfLesson.ViewModel\WpfLesson.ViewModel.csproj", "{1779B099-68B3-4299-A3A9-B5F3F4F5BB2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +17,22 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E85AD52D-A0C0-4A76-AF80-F89CF04F26F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E85AD52D-A0C0-4A76-AF80-F89CF04F26F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E85AD52D-A0C0-4A76-AF80-F89CF04F26F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E85AD52D-A0C0-4A76-AF80-F89CF04F26F0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FFB12EAC-4182-4258-83D7-B07BBAE0EF18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FFB12EAC-4182-4258-83D7-B07BBAE0EF18}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FFB12EAC-4182-4258-83D7-B07BBAE0EF18}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FFB12EAC-4182-4258-83D7-B07BBAE0EF18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EC5DCB6-2BA4-4ED5-94C1-8B9A08386BB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EC5DCB6-2BA4-4ED5-94C1-8B9A08386BB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EC5DCB6-2BA4-4ED5-94C1-8B9A08386BB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EC5DCB6-2BA4-4ED5-94C1-8B9A08386BB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A130B41-ECE2-4E80-9F5D-D49EF7753C88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A130B41-ECE2-4E80-9F5D-D49EF7753C88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A130B41-ECE2-4E80-9F5D-D49EF7753C88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A130B41-ECE2-4E80-9F5D-D49EF7753C88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E76F925F-B7D9-4F36-8C7B-F9CB2C36A332}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E76F925F-B7D9-4F36-8C7B-F9CB2C36A332}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E76F925F-B7D9-4F36-8C7B-F9CB2C36A332}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E76F925F-B7D9-4F36-8C7B-F9CB2C36A332}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1779B099-68B3-4299-A3A9-B5F3F4F5BB2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1779B099-68B3-4299-A3A9-B5F3F4F5BB2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1779B099-68B3-4299-A3A9-B5F3F4F5BB2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1779B099-68B3-4299-A3A9-B5F3F4F5BB2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

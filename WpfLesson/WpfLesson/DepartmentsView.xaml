@@ -1,0 +1,43 @@
+﻿<Window x:Class="WpfLesson.DepartmentsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfLesson"
+        mc:Ignorable="d"
+        Title="Отделения" Height="300" Width="400" 
+        MinWidth="400" MinHeight="300" Padding="5" FocusManager.FocusedElement="{Binding ElementName=DepartmentsComboBox}">
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="70*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Отделения:" Grid.Row="0" Grid.Column="0" />
+        <ComboBox Name="DepartmentsComboBox" Margin="5" Grid.Row="0" Grid.Column="1" SelectedValue="{Binding Path=SelectedValue, Mode=OneWayToSource}" ItemsSource="{Binding Path=Departments}" DisplayMemberPath="DeptName" SelectedValuePath="ID" />
+        <GroupBox Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="3" Header="Данные отделения:">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition MinHeight="100" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="70*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Content="Название:" />
+                <TextBox Grid.Row="0" Grid.Column="1" Margin="5"  IsEnabled="{Binding Path=DetailsEnabled}" Text="{Binding Path=SelectedEntity.DeptName}"/>
+                <Label Grid.Row="1" Grid.Column="0" Content="Информация:" />
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="5" TextWrapping="Wrap" AcceptsReturn="True" IsEnabled="{Binding Path=DetailsEnabled}" Text="{Binding Path=SelectedEntity.DeptInfo}"/>
+                <Button Grid.Row="2" Grid.ColumnSpan="2" Content="Обновить" Margin="5" Command="{Binding Path=UpdateCommand}" />
+            </Grid>
+        </GroupBox>
+
+    </Grid>
+</Window>

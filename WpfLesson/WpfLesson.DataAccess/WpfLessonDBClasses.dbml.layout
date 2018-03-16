@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="WpfLessonDBClasses">
+  <DataContextMoniker Name="/WpfLessonDBClassesDataContext" />
+  <nestedChildShapes>
+    <classShape Id="4a806fc2-63d8-48aa-9843-32ac98013a29" absoluteBounds="1.875, 2, 2, 1.3862939453125">
+      <DataClassMoniker Name="/WpfLessonDBClassesDataContext/DbDepartment" />
+      <nestedChildShapes>
+        <elementListCompartment Id="75858f61-823e-47a5-9b8b-f087cf752b20" absoluteBounds="1.8900000000000001, 2.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2ab9008e-a27a-4558-9dc9-8b510acd0c73" absoluteBounds="4.375, 2, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/WpfLessonDBClassesDataContext/DbEmployer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6e4ddfd7-5e76-4295-9a72-fe2c4feca481" absoluteBounds="4.39, 2.46, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.875 : 2.69314697265625); (4.375 : 2.69314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/WpfLessonDBClassesDataContext/DbDepartment/DbDepartment_Employer" />
+      <nodes>
+        <classShapeMoniker Id="4a806fc2-63d8-48aa-9843-32ac98013a29" />
+        <classShapeMoniker Id="2ab9008e-a27a-4558-9dc9-8b510acd0c73" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

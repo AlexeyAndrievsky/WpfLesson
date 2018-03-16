@@ -10,7 +10,9 @@
         <StackPanel>
             <Button Content="Сотрудники"  Margin="5" Click="ShowEmployersButton_Click" />
             <Button Content="Отделения"  Margin="5" Click="ShowDepartmentsButton_Click" />
-            <TextBox IsEnabled="False" TextWrapping="Wrap" AcceptsReturn="True" Text="Начал реализовывать MVVM паттерн и обмен данными с локальной БД. Делал второпях 'на коленке', и проект еще далек от завершения."/>
+            <Button Content="Добавить отделение"  Margin="5" Click="AddDepartmentButton_Click" />
+            <Button Content="Добавить сотрудника"  Margin="5" Click="AddEmployeeButton_Click" />
+            <TextBox IsEnabled="False" TextWrapping="Wrap" AcceptsReturn="True" Text="TODO: добавить возможность удаления сотрудника или отдела, добавить обработку исключений, добавить строку состояния с выводом об успехе выполненного действия или об ошибке, возникшей в процессе."/>
         </StackPanel>
     </Grid>
 </Window>
