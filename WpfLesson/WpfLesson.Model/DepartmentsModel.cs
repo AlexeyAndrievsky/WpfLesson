@@ -1,15 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using WpfLesson.DataAccess;
 
 namespace WpfLesson.Model
 {
+    /// <summary>
+    /// Класс, описывающий модель коллекции отделений.
+    /// Дочерний класс класса <see cref="EntitiesModel"/>
+    /// </summary>
     public class DepartmentsModel : EntitiesModel
     {
+        #region .ctor
+        /// <summary>
+        /// Конструктор класса DepartmentsModel.
+        /// </summary>
+        /// <param name="dataService">Сервис обмена данными с БД.</param>
         public DepartmentsModel(IDataService dataService)
         {
             Entities = new ObservableCollection<IEntity>();
@@ -18,5 +22,6 @@ namespace WpfLesson.Model
                 Entities.Add(dpt);
             }
         }
+        #endregion
     }
 }
