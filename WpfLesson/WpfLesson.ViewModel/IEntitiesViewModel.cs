@@ -12,7 +12,7 @@ namespace WpfLesson.ViewModel
         /// <summary>
         /// Название выбранного объекта модели-представления. 
         /// </summary>
-        string SelectedPropertyName { get; set; }
+        string SelectedPropertyName { get; }
 
         /// <summary>
         /// Cсылка на выбранный объект модели-представления.

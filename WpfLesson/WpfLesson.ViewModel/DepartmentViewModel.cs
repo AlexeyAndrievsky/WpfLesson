@@ -3,11 +3,29 @@ using WpfLesson.Model;
 
 namespace WpfLesson.ViewModel
 {
+    /// <summary>
+    /// Класс, реализующий модель представление Отделение.
+    /// Дочерний класс класса <see cref="EntityViewModel"/>
+    /// Реализует интерфейс <see cref="IDepartment"/>
+    /// </summary>
     public class DepartmentViewModel : EntityViewModel, IDepartment
     {
+        #region Fields
+        /// <summary>
+        /// Название отделения.
+        /// </summary>
         private string deptName;
-        private string deptInfo;
 
+        /// <summary>
+        /// Дополнительная информация об отделении.
+        /// </summary>
+        private string deptInfo;
+        #endregion
+
+        #region Properties
+        /// <summary>
+        /// Свойство, реализующее доступ к полю, содержащему название отделения.
+        /// </summary>
         public string DeptName
         {
             get { return deptName; }
@@ -18,6 +36,9 @@ namespace WpfLesson.ViewModel
             }
         }
 
+        /// <summary>
+        /// Свойство, реализующее доступ к полю, содержащему дополнительную информацию об отделении.
+        /// </summary>
         public string DeptInfo
         {
             get { return deptInfo; }
@@ -27,7 +48,13 @@ namespace WpfLesson.ViewModel
                 NotifyPropertyChanged("DeptInfo");
             }
         }
+        #endregion
 
+        #region .ctor
+        /// <summary>
+        /// Конструктор класса DepartmentViewModel.
+        /// </summary>
+        /// <param name="department">Сущность Отделение</param>
         public DepartmentViewModel(IDepartment department)
         {
             if (department == null)
@@ -35,17 +62,13 @@ namespace WpfLesson.ViewModel
             ID = department.ID;
             Update(department);
         }
+        #endregion
 
-        public DepartmentViewModel(DepartmentModel departmentModel)
-        {
-            if (departmentModel == null)
-                return;
-            if (departmentModel.Entity == null)
-                return;
-            ID = departmentModel.Entity.ID;
-            Update(departmentModel.Entity);
-        }
-
+        #region Methods
+        /// <summary>
+        /// Обновление информации отделения.
+        /// </summary>
+        /// <param name="entity">Отделение, информацию которого следует обновить.</param>
         public override void Update(IEntity entity)
         {
             ID = entity.ID;
@@ -53,6 +76,10 @@ namespace WpfLesson.ViewModel
             DeptInfo = (entity as IDepartment).DeptInfo;
         }
 
+        /// <summary>
+        /// Добавление нового отделения.
+        /// </summary>
+        /// <param name="entity">Отделение, которое следует добавить.</param>
         public override void Insert(IEntity entity)
         {
             ID = entity.ID;
@@ -60,11 +87,16 @@ namespace WpfLesson.ViewModel
             DeptInfo = (entity as IDepartment).DeptInfo;
         }
 
+        /// <summary>
+        /// Удаление отделения.
+        /// </summary>
+        /// <param name="entity">Отделение, которое следует удалить.</param>
         public override void Delete(IEntity entity)
         {
             ID = entity.ID;
             DeptName = (entity as IDepartment).DeptName;
             DeptInfo = (entity as IDepartment).DeptInfo;
         }
+        #endregion
     }
 }
