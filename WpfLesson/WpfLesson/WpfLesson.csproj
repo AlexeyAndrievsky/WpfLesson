@@ -126,14 +126,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WpfLesson.DataAccess\WpfLesson.DataAccess.csproj">
-      <Project>{8a130b41-ece2-4e80-9f5d-d49ef7753c88}</Project>
-      <Name>WpfLesson.DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WpfLesson.Model\WpfLesson.Model.csproj">
-      <Project>{e76f925f-b7d9-4f36-8c7b-f9cb2c36a332}</Project>
-      <Name>WpfLesson.Model</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WpfLesson.ViewModel\WpfLesson.ViewModel.csproj">
       <Project>{1779b099-68b3-4299-a3a9-b5f3f4f5bb2b}</Project>
       <Name>WpfLesson.ViewModel</Name>
