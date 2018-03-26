@@ -65,7 +65,7 @@ namespace WpfLesson.ViewModel
             if ((Department as IDepartment).DeptName != string.Empty && (Department as IDepartment).DeptInfo != string.Empty)
             {
                 deptModel.InsertEntity(Department);
-                CloseAction();
+                //CloseAction();
             }
         }
         #endregion

@@ -23,7 +23,7 @@ namespace WpfLesson.ViewModel
         /// Команда на добавление сотрудника.
         /// </summary>
         private readonly ICommand insertCommand;
-        
+
         /// <summary>
         /// Модель коллекции отделений.
         /// </summary>
@@ -78,7 +78,7 @@ namespace WpfLesson.ViewModel
             if ((Employee as IEmployee).Surname != string.Empty && (Employee as IEmployee).Name != string.Empty && (Employee as IEmployee).SecondName != string.Empty && (Employee as IEmployee).Birthday.HasValue && (Employee as IEmployee).Id_Department != -1 && (Employee as IEmployee).Salary.HasValue)
             {
                 empModel.InsertEntity(Employee);
-                CloseAction();
+                //CloseAction();
             }
         }
         #endregion

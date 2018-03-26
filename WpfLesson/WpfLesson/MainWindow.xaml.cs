@@ -8,7 +8,7 @@ namespace WpfLesson
     {
         public MainWindow()
         {
-            Dictionary<string, Window> windows = new Dictionary<string, Window>();
+            Dictionary<string, IWindowView> windows = new Dictionary<string, IWindowView>();
             windows.Add("EmployersView", new EmployersView());
             windows.Add("DepartmentsView", new DepartmentsView());
             windows.Add("AddDepartmentView", new AddDepartmentView());

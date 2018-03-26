@@ -54,6 +54,7 @@
     <Compile Include="IEntitiesViewModel.cs" />
     <Compile Include="IEntityViewModel.cs" />
     <Compile Include="InsertCommand.cs" />
+    <Compile Include="IWindowView.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="OpenViewCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

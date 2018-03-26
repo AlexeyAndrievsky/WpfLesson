@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 using WpfLesson.DataAccess;
 using WpfLesson.Model;
+using System.Reflection;
 
 namespace WpfLesson.ViewModel
 {
@@ -18,28 +19,31 @@ namespace WpfLesson.ViewModel
         /// Ссылка на представление главного окна.
         /// </summary>
         private Window mainWindow;
-        
+
         /// <summary>
         /// Команда на открытие окна Сотрудники.
         /// </summary>
         private readonly ICommand openEmployersViewCommand;
-        
+
         /// <summary>
         /// Команда на открытие окна Отделения.
         /// </summary>
         private readonly ICommand openDepartmentsViewCommand;
-        
+
         /// <summary>
         /// Команда на открытие окна Добавить отделение.
         /// </summary>
         private readonly ICommand openAddDepartmentViewCommand;
-        
+
         /// <summary>
         /// Команда на открытие окна Добавить сотрудника.
         /// </summary>
         private readonly ICommand openAddEmployeeViewCommand;
 
-        private IDictionary<string, Window> windows;
+        /// <summary>
+        /// Словарь, содержащий набор представлений, которые можно открыть из главного окна.
+        /// </summary>
+        private IDictionary<string, IWindowView> windows;
         #endregion
 
         #region Properties
@@ -82,7 +86,7 @@ namespace WpfLesson.ViewModel
         /// </summary>
         /// <param name="windows">Словарь, содержащий представления, которые открываются из главного окна.</param>
         /// <param name="mainWindow">Ссылка на представление.</param>
-        public MainWindowViewModel(IDictionary<string, Window> windows, Window mainWindow)
+        public MainWindowViewModel(IDictionary<string, IWindowView> windows, Window mainWindow)
         {
             this.mainWindow = mainWindow;
             this.windows = windows;
@@ -100,14 +104,19 @@ namespace WpfLesson.ViewModel
         /// </summary>
         private void ShowEmployers()
         {
-            Window view = windows["EmployersView"];
-            if (view != null)
+            var v = windows["EmployersView"];
+            if (v != null)
             {
-                EmployersModel employersModel = new EmployersModel(new DataServiceStub());
-                DepartmentsModel departmentsModel = new DepartmentsModel(new DataServiceStub());
-                view.DataContext = new EmployersViewModel(employersModel, departmentsModel);
-                view.Owner = mainWindow;
-                view.Show();
+                DataServiceStub ds = new DataServiceStub();
+                Type t = v.GetType();
+                ConstructorInfo ctor = t.GetConstructor(Type.EmptyTypes);
+                object instance = ctor.Invoke(null);
+                PropertyInfo fieldDataContext = t.GetProperty("DataContext");
+                fieldDataContext.SetValue(instance, new EmployersViewModel(new EmployersModel(ds), new DepartmentsModel(ds)));
+                PropertyInfo fieldOwner = t.GetProperty("Owner");
+                fieldOwner.SetValue(instance, mainWindow);
+                MethodInfo methodShow = t.GetMethod("Show");
+                methodShow.Invoke(instance, null);
             }
         }
 
@@ -116,14 +125,19 @@ namespace WpfLesson.ViewModel
         /// </summary>
         private void ShowDepartments()
         {
-            Window view = windows["DepartmentsView"];
-            if (view != null)
+            var v = windows["DepartmentsView"];
+            if (v != null)
             {
-                EmployersModel employersModel = new EmployersModel(new DataServiceStub());
-                DepartmentsModel departmentsModel = new DepartmentsModel(new DataServiceStub());
-                view.DataContext = new DepartmentsViewModel(employersModel, departmentsModel);
-                view.Owner = mainWindow;
-                view.Show();
+                DataServiceStub ds = new DataServiceStub();
+                Type t = v.GetType();
+                ConstructorInfo ctor = t.GetConstructor(Type.EmptyTypes);
+                object instance = ctor.Invoke(null);
+                PropertyInfo fieldDataContext = t.GetProperty("DataContext");
+                fieldDataContext.SetValue(instance, new DepartmentsViewModel(new EmployersModel(ds), new DepartmentsModel(ds)));
+                PropertyInfo fieldOwner = t.GetProperty("Owner");
+                fieldOwner.SetValue(instance, mainWindow);
+                MethodInfo methodShow = t.GetMethod("Show");
+                methodShow.Invoke(instance, null);
             }
         }
 
@@ -132,15 +146,18 @@ namespace WpfLesson.ViewModel
         /// </summary>
         private void ShowAddDepartment()
         {
-            Window view = windows["AddDepartmentView"];
-            if (view != null)
+            var v = windows["AddDepartmentView"];
+            if (v != null)
             {
-                DepartmentModel departmentModel = new DepartmentModel(new DataServiceStub());
-                AddDepartmentViewModel vm = new AddDepartmentViewModel(departmentModel);
-                view.DataContext = vm;
-                vm.CloseAction = new Action(view.Hide);
-                view.Owner = mainWindow;
-                view.Show();
+                Type t = v.GetType();
+                ConstructorInfo ctor = t.GetConstructor(Type.EmptyTypes);
+                object instance = ctor.Invoke(null);
+                PropertyInfo fieldDataContext = t.GetProperty("DataContext");
+                fieldDataContext.SetValue(instance, new AddDepartmentViewModel(new DepartmentModel(new DataServiceStub())));
+                PropertyInfo fieldOwner = t.GetProperty("Owner");
+                fieldOwner.SetValue(instance, mainWindow);
+                MethodInfo methodShow = t.GetMethod("Show");
+                methodShow.Invoke(instance, null);
             }
         }
 
@@ -149,16 +166,19 @@ namespace WpfLesson.ViewModel
         /// </summary>
         private void ShowAddEmployee()
         {
-            Window view = windows["AddEmployeeView"];
-            if (view != null)
+            var v = windows["AddEmployeeView"];
+            if (v != null)
             {
-                EmployeeModel employeeModel = new EmployeeModel(new DataServiceStub());
-                DepartmentsModel departmentsModel = new DepartmentsModel(new DataServiceStub());
-                AddEmployeeViewModel vm = new AddEmployeeViewModel(employeeModel, departmentsModel);
-                view.DataContext = vm;
-                vm.CloseAction = new Action(view.Hide);
-                view.Owner = mainWindow;
-                view.Show();
+                DataServiceStub ds = new DataServiceStub();
+                Type t = v.GetType();
+                ConstructorInfo ctor = t.GetConstructor(Type.EmptyTypes);
+                object instance = ctor.Invoke(null);
+                PropertyInfo fieldDataContext = t.GetProperty("DataContext");
+                fieldDataContext.SetValue(instance, new AddEmployeeViewModel(new EmployeeModel(ds), new DepartmentsModel(ds)));
+                PropertyInfo fieldOwner = t.GetProperty("Owner");
+                fieldOwner.SetValue(instance, mainWindow);
+                MethodInfo methodShow = t.GetMethod("Show");
+                methodShow.Invoke(instance, null);
             }
         }
         #endregion
