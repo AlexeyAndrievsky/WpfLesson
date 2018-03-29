@@ -159,7 +159,7 @@ namespace WpfLesson.ViewModel
         /// </summary>
         public void UpdateEntity()
         {
-            deptsModel.UpdateEntity(SelectedEntity);
+            deptsModel.UpdateEntity(new Department(SelectedEntity.ID, (SelectedEntity as DepartmentViewModel).DeptName, (SelectedEntity as DepartmentViewModel).DeptInfo));
         }
         #endregion
 

@@ -33,5 +33,15 @@ namespace WpfLesson.DataAccess.Properties {
                 return ((string)(this["WpfLessonDataConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:5469/")]
+        public string ServiceUrl {
+            get {
+                return ((string)(this["ServiceUrl"]));
+            }
+        }
     }
 }

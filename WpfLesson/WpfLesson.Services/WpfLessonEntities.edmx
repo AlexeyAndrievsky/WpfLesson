@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WpfLessonDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="Id_Department" />
+          </Key>
+          <Property Name="Id_Department" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeptName" Type="nvarchar" MaxLength="255" />
+          <Property Name="DeptInfo" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Employers">
+          <Key>
+            <PropertyRef Name="Id_Employee" />
+          </Key>
+          <Property Name="Id_Employee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpSurname" Type="nvarchar" MaxLength="255" />
+          <Property Name="EmpName" Type="nvarchar" MaxLength="255" />
+          <Property Name="EmpSecondName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="Id_Department" Type="int" Nullable="false" />
+          <Property Name="Salary" Type="money" />
+        </EntityType>
+        <Association Name="FK_Employers_Id_Department">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="Employers" Type="Self.Employers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="Id_Department" />
+            </Principal>
+            <Dependent Role="Employers">
+              <PropertyRef Name="Id_Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WpfLessonDataModelStoreContainer">
+          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employers" EntityType="Self.Employers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Employers_Id_Department" Association="Self.FK_Employers_Id_Department">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Employers" EntitySet="Employers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WpfLessonDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="Id_Department" />
+          </Key>
+          <Property Name="Id_Department" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeptName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DeptInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employers" Relationship="Self.FK_Employers_Id_Department" FromRole="Departments" ToRole="Employers" />
+        </EntityType>
+        <EntityType Name="Employers">
+          <Key>
+            <PropertyRef Name="Id_Employee" />
+          </Key>
+          <Property Name="Id_Employee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpSurname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EmpName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EmpSecondName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="Salary" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Departments" Relationship="Self.FK_Employers_Id_Department" FromRole="Employers" ToRole="Departments" />
+        </EntityType>
+        <Association Name="FK_Employers_Id_Department">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="Employers" Type="Self.Employers" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="WpfLessonDataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Departments" EntityType="Self.Departments" />
+          <EntitySet Name="Employers" EntityType="Self.Employers" />
+          <AssociationSet Name="FK_Employers_Id_Department" Association="Self.FK_Employers_Id_Department">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Employers" EntitySet="Employers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WpfLessonDataModelStoreContainer" CdmEntityContainer="WpfLessonDataEntities">
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="WpfLessonDataModel.Departments">
+              <MappingFragment StoreEntitySet="Departments">
+                <ScalarProperty Name="Id_Department" ColumnName="Id_Department" />
+                <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+                <ScalarProperty Name="DeptInfo" ColumnName="DeptInfo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employers">
+            <EntityTypeMapping TypeName="WpfLessonDataModel.Employers">
+              <MappingFragment StoreEntitySet="Employers">
+                <ScalarProperty Name="Id_Employee" ColumnName="Id_Employee" />
+                <ScalarProperty Name="EmpSurname" ColumnName="EmpSurname" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="EmpSecondName" ColumnName="EmpSecondName" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_Employers_Id_Department" TypeName="WpfLessonDataModel.FK_Employers_Id_Department" StoreEntitySet="Employers">
+            <EndProperty Name="Departments">
+              <ScalarProperty Name="Id_Department" ColumnName="Id_Department" />
+            </EndProperty>
+            <EndProperty Name="Employers">
+              <ScalarProperty Name="Id_Employee" ColumnName="Id_Employee" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

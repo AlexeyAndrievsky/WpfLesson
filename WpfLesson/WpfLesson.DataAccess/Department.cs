@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// Класс, реализующий сущность Отделение.
-    /// Наследник интерфейса <see cref="IDepartment"/>
+    /// Реализует интерфейс <see cref="IDepartment"/>
     /// </summary>
     public class Department : IDepartment
     {
@@ -43,52 +43,40 @@
         /// Обновление информации отделения.
         /// </summary>
         /// <param name="department">Отделение, информацию которого следует обновить.</param>
-        public void Update(IEntity department)
+        public async void Update(IEntity department)
         {
-            ID = (department as Department).ID;
+            ID = department.ID;
             DeptName = (department as Department).DeptName;
             DeptInfo = (department as Department).DeptInfo;
 
             DataServiceStub ds = new DataServiceStub();
-            ds.UpdateDepartment(this);
+            await ds.UpdateDepartment(this);
         }
 
         /// <summary>
         /// Добавление нового отделения.
         /// </summary>
         /// <param name="department">Отделение, которое следует добавить.</param>
-        public void Insert(IEntity department)
+        public async void Insert(IEntity department)
         {
-            ID = (department as Department).ID;
+            ID = department.ID;
             DeptName = (department as Department).DeptName;
             DeptInfo = (department as Department).DeptInfo;
 
             DataServiceStub ds = new DataServiceStub();
-            ds.InsertDepartment(this);
+            await ds.InsertDepartment(this);
         }
 
         /// <summary>
         /// Удаление отделения.
         /// </summary>
         /// <param name="department">Отделение, которое следует удалить.</param>
-        public void Delete(IEntity department)
+        public async void Delete(IEntity department)
         {
-            ID = (department as Department).ID;
+            ID = department.ID;
 
             DataServiceStub ds = new DataServiceStub();
-            ds.DeleteDepartment(this);
-        }
-        #endregion
-
-        #region Operators
-       /// <summary>
-       /// Определение оператора неявного приведение типа.
-       /// Исходный тип: <see cref="DbDepartment"/>
-       /// </summary>
-       /// <param name="dpt">Объект класса <see cref="DbDepartment"/></param>
-        public static implicit operator Department(DbDepartment dpt)
-        {
-            return new Department(dpt.Id_Department, dpt.DeptName, dpt.DeptInfo);
+            await ds.DeleteDepartment(this);
         }
         #endregion
     }

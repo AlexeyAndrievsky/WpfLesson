@@ -110,13 +110,16 @@ namespace WpfLesson.ViewModel
                 DataServiceStub ds = new DataServiceStub();
                 Type t = v.GetType();
                 ConstructorInfo ctor = t.GetConstructor(Type.EmptyTypes);
-                object instance = ctor.Invoke(null);
-                PropertyInfo fieldDataContext = t.GetProperty("DataContext");
-                fieldDataContext.SetValue(instance, new EmployersViewModel(new EmployersModel(ds), new DepartmentsModel(ds)));
-                PropertyInfo fieldOwner = t.GetProperty("Owner");
-                fieldOwner.SetValue(instance, mainWindow);
-                MethodInfo methodShow = t.GetMethod("Show");
-                methodShow.Invoke(instance, null);
+                PropertyInfo propDataContext = t.GetProperty("DataContext");
+                if (propDataContext != null)
+                {
+                    object instance = ctor.Invoke(null);
+                    propDataContext.SetValue(instance, new EmployersViewModel(new EmployersModel(ds), new DepartmentsModel(ds)));
+                    PropertyInfo propOwner = t.GetProperty("Owner");
+                    propOwner.SetValue(instance, mainWindow);
+                    MethodInfo methodShow = t.GetMethod("Show");
+                    methodShow.Invoke(instance, null);
+                }
             }
         }
 
@@ -131,33 +134,43 @@ namespace WpfLesson.ViewModel
                 DataServiceStub ds = new DataServiceStub();
                 Type t = v.GetType();
                 ConstructorInfo ctor = t.GetConstructor(Type.EmptyTypes);
-                object instance = ctor.Invoke(null);
-                PropertyInfo fieldDataContext = t.GetProperty("DataContext");
-                fieldDataContext.SetValue(instance, new DepartmentsViewModel(new EmployersModel(ds), new DepartmentsModel(ds)));
-                PropertyInfo fieldOwner = t.GetProperty("Owner");
-                fieldOwner.SetValue(instance, mainWindow);
-                MethodInfo methodShow = t.GetMethod("Show");
-                methodShow.Invoke(instance, null);
+                PropertyInfo propDataContext = t.GetProperty("DataContext");
+                if (propDataContext != null)
+                {
+                    object instance = ctor.Invoke(null);
+                    propDataContext.SetValue(instance, new DepartmentsViewModel(new EmployersModel(ds), new DepartmentsModel(ds)));
+                    PropertyInfo propOwner = t.GetProperty("Owner");
+                    propOwner.SetValue(instance, mainWindow);
+                    MethodInfo methodShow = t.GetMethod("Show");
+                    methodShow.Invoke(instance, null);
+                }
             }
         }
 
         /// <summary>
         /// Метод, открывающий окно Добавить отделение.
         /// </summary>
-        private void ShowAddDepartment()
+        public void ShowAddDepartment()
         {
             var v = windows["AddDepartmentView"];
             if (v != null)
             {
                 Type t = v.GetType();
                 ConstructorInfo ctor = t.GetConstructor(Type.EmptyTypes);
-                object instance = ctor.Invoke(null);
-                PropertyInfo fieldDataContext = t.GetProperty("DataContext");
-                fieldDataContext.SetValue(instance, new AddDepartmentViewModel(new DepartmentModel(new DataServiceStub())));
-                PropertyInfo fieldOwner = t.GetProperty("Owner");
-                fieldOwner.SetValue(instance, mainWindow);
-                MethodInfo methodShow = t.GetMethod("Show");
-                methodShow.Invoke(instance, null);
+                PropertyInfo propDataContext = t.GetProperty("DataContext");
+                if (propDataContext != null)
+                {
+                    object instance = ctor.Invoke(null);
+                    AddDepartmentViewModel advm = new AddDepartmentViewModel(new DepartmentModel(new DataServiceStub()));
+                    propDataContext.SetValue(instance, advm);
+                    PropertyInfo propOwner = t.GetProperty("Owner");
+                    propOwner.SetValue(instance, mainWindow);
+                    PropertyInfo propCloseAction = t.GetProperty("Owner");
+                    propOwner.SetValue(instance, mainWindow);
+                    advm.CloseAction = new Action(() => (instance as Window).Close());
+                    MethodInfo methodShow = t.GetMethod("Show");
+                    methodShow.Invoke(instance, null);
+                }
             }
         }
 
@@ -172,13 +185,18 @@ namespace WpfLesson.ViewModel
                 DataServiceStub ds = new DataServiceStub();
                 Type t = v.GetType();
                 ConstructorInfo ctor = t.GetConstructor(Type.EmptyTypes);
-                object instance = ctor.Invoke(null);
-                PropertyInfo fieldDataContext = t.GetProperty("DataContext");
-                fieldDataContext.SetValue(instance, new AddEmployeeViewModel(new EmployeeModel(ds), new DepartmentsModel(ds)));
-                PropertyInfo fieldOwner = t.GetProperty("Owner");
-                fieldOwner.SetValue(instance, mainWindow);
-                MethodInfo methodShow = t.GetMethod("Show");
-                methodShow.Invoke(instance, null);
+                PropertyInfo propDataContext = t.GetProperty("DataContext");
+                if (propDataContext != null)
+                {
+                    object instance = ctor.Invoke(null);
+                    AddEmployeeViewModel aevm = new AddEmployeeViewModel(new EmployeeModel(ds), new DepartmentsModel(ds));
+                    propDataContext.SetValue(instance, aevm);
+                    PropertyInfo propOwner = t.GetProperty("Owner");
+                    propOwner.SetValue(instance, mainWindow);
+                    aevm.CloseAction = new Action(() => (instance as Window).Close());
+                    MethodInfo methodShow = t.GetMethod("Show");
+                    methodShow.Invoke(instance, null);
+                }
             }
         }
         #endregion

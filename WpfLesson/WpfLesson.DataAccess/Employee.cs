@@ -4,7 +4,7 @@ namespace WpfLesson.DataAccess
 {
     /// <summary>
     /// Класс, реализующий сущность Сотрудник.
-    /// Наследник интерфейса <see cref="IEmployee"/>
+    /// Реализует интерфейс <see cref="IEmployee"/>
     /// </summary>
     public class Employee : IEmployee
     {
@@ -73,9 +73,9 @@ namespace WpfLesson.DataAccess
         ///Обновление данных сотрудника.
         /// </summary>
         /// <param name="employee">Сотрудник, данные которого следует обновить.</param>
-        public void Update(IEntity employee)
+        public async void Update(IEntity employee)
         {
-            ID = (employee as IEmployee).ID;
+            ID = employee.ID;
             Surname = (employee as IEmployee).Surname;
             Name = (employee as IEmployee).Name;
             SecondName = (employee as IEmployee).SecondName;
@@ -84,16 +84,16 @@ namespace WpfLesson.DataAccess
             Salary = (employee as IEmployee).Salary;
 
             DataServiceStub ds = new DataServiceStub();
-            ds.UpdateEmployee(this);
+            await ds.UpdateEmployee(this);
         }
 
         /// <summary>
         /// Добавление нового сотрудника.
         /// </summary>
         /// <param name="employee">Сотрудник, которого следует добавить.</param>
-        public void Insert(IEntity employee)
+        public async void Insert(IEntity employee)
         {
-            ID = (employee as Employee).ID;
+            ID = employee.ID;
             Surname = (employee as Employee).Surname;
             Name = (employee as Employee).Name;
             SecondName = (employee as Employee).SecondName;
@@ -102,30 +102,18 @@ namespace WpfLesson.DataAccess
             Salary = (employee as Employee).Salary;
 
             DataServiceStub ds = new DataServiceStub();
-            ds.InsertEmployee(this);
+            await ds.InsertEmployee(this);
         }
 
         /// <summary>
         /// Удаление сотрудника.
         /// </summary>
         /// <param name="employee">Сотрудник, которого следует удалить.</param>
-        public void Delete(IEntity employee)
+        public async void Delete(IEntity employee)
         {
-            ID = (employee as Employee).ID;
+            ID = employee.ID;
             DataServiceStub ds = new DataServiceStub();
-            ds.DeleteEmployee(this);
-        }
-        #endregion
-
-        #region Operators
-        /// <summary>
-        /// Определение оператора неявного преобразования типа.
-        /// Исходный тип <see cref="DbEmployer"/>
-        /// </summary>
-        /// <param name="emp">Объект класса <see cref="DbEmployer"/></param>
-        public static implicit operator Employee(DbEmployer emp)
-        {
-            return new Employee(emp.Id_Employee, emp.EmpSurname, emp.EmpName, emp.EmpSecondName, emp.Birthday, emp.Id_Department, emp.Salary);
+            await ds.DeleteEmployee(this);
         }
         #endregion
     }

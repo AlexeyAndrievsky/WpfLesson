@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using WpfLesson.DataAccess;
 
 namespace WpfLesson.Model
@@ -17,7 +19,20 @@ namespace WpfLesson.Model
         public DepartmentsModel(IDataService dataService)
         {
             Entities = new ObservableCollection<IEntity>();
-            foreach (Department dpt in dataService.GetDepartments())
+            FillDepartmentsList(dataService);
+        }
+        #endregion
+
+        #region Methods
+        /// <summary>
+        /// Метод, заполняющий коллекцию отделений.
+        /// </summary>
+        /// <param name="dataService">Сервис обмена данными с БД.</param>
+        private async void FillDepartmentsList(IDataService dataService)
+        {
+            var res = await dataService.GetDepartments();
+            List<Department> depts = res;
+            foreach (Department dpt in depts)
             {
                 Entities.Add(dpt);
             }

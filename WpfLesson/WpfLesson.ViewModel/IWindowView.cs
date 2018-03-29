@@ -1,10 +1,9 @@
-﻿using System.Windows;
-
-namespace WpfLesson.ViewModel
+﻿namespace WpfLesson.ViewModel
 {
+    /// <summary>
+    /// Интерфейс, описывающий представление.
+    /// </summary>
     public interface IWindowView
     {
-        //object DataContext { get; set; }
-        //void Show();
     }
 }

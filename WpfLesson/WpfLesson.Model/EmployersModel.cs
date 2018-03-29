@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using WpfLesson.DataAccess;
 
 namespace WpfLesson.Model
@@ -17,7 +18,20 @@ namespace WpfLesson.Model
         public EmployersModel(IDataService dataService)
         {
             Entities = new ObservableCollection<IEntity>();
-            foreach (Employee emp in dataService.GetEmployers())
+            FillEmployersList(dataService);
+        }
+        #endregion
+
+        #region Methods
+        /// <summary>
+        /// Метод, заполняющий коллекцию сотрудников.
+        /// </summary>
+        /// <param name="dataService">Сервис обмена данными с БД.</param>
+        private async void FillEmployersList(IDataService dataService)
+        {
+            var res = await dataService.GetEmployers();
+            List<Employee> empls = res;
+            foreach (Employee emp in empls)
             {
                 Entities.Add(emp);
             }
